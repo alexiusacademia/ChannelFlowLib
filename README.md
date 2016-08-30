@@ -1,4 +1,4 @@
-# Open Channel Hydraulics
+# Channel Flow
 Python modules to use in solving hydraulic elements of an open channel. This uses the Manning's equation in solving the hydraulic elements.
 
 This project aims to create bits of modules for hydraulics engineering and later to be combined as one package for easier distribution. It aims to create an open source software for this subject to help both engineering students and instructors if they ever find this useful to them.

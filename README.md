@@ -11,4 +11,8 @@ Here are the checklist for this module:<br/>
 
 All those unchecked are yet to be written.
 
+## Notes:
+
+- In the circular pipe class in the module open channel, I haven't incorporated yet the unit conversion. All units are assumed to be in metric. Although it's easy to incorporate it if you are to use it by subclassing it and override the getter and setter functions.
+
 Anyone who want to contribute, just contact me at alexius.academia@gmail.com

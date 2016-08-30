@@ -1,26 +1,27 @@
-#---------------------------------------------------------------------------#
-#	Copyright (C) 2016  Alexius Academia                                    #
-#	                                                                        #
-#	This program is free software: you can redistribute it and/or modify    #
-#	it under the terms of the GNU General Public License as published by    #
-#	the Free Software Foundation, either version 3 of the License, or       #
-#	(at your option) any later version.	                                    #
-#	                                                                        #
-#	This program is distributed in the hope that it will be useful,	        #
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of          #
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           #
-#	GNU General Public License for more details.                            #
-#	                                                                        #
-#	You should have received a copy of the GNU General Public License       #
-#	along with this program.  If not, see <http://www.gnu.org/licenses/>    #
-#---------------------------------------------------------------------------#
-#	File:		openchannel.py                                              #
-#	Author:		Alexius Academia                                            #
-#	Email:		alexius.academia@gmail.com                                  #
-#---------------------------------------------------------------------------#	
-#	Description:	This class is for the computation of hydraulics elements#
-#			of open channels using the Manning's equation.                  #
-#---------------------------------------------------------------------------#
+# --------------------------------------------------------------------------#
+# Copyright (C) 2016  Alexius Academia                                      #
+#                                                                           #
+# This program is free software: you can redistribute it and/or modify      #
+# it under the terms of the GNU General Public License as published by      #
+# the Free Software Foundation, either version 3 of the License, or         #
+# (at your option) any later version.                                       #
+#                                                                           #
+# This program is distributed in the hope that it will be useful,           #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of            #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             #
+# GNU General Public License for more details.                              #
+#                                                                           #
+# You should have received a copy of the GNU General Public License         #
+# along with this program.  If not, see <http://www.gnu.org/licenses/>      #
+# --------------------------------------------------------------------------#
+# File:		    openchannel.py                                              #
+# Author:		Alexius Academia                                            #
+# Email:		alexius.academia@gmail.com                                  #
+# --------------------------------------------------------------------------#
+# Description:	This module is for the computation of hydraulics elements   #
+#           of open channels using the Manning's equation.                  #
+# --------------------------------------------------------------------------#
+import math
 
 """ Open Channel Module """
 metric = 'metric'                           # String metric for unit conversion
@@ -478,3 +479,141 @@ class Trapezoidal:
                 self.hydraulic_radius = r
                 self.velocity = v
 
+
+class Circular:
+    def __init__(self):
+        """
+        Constructor
+        :return:
+        """
+        self.discharge = 0.0
+        self.slope = 0.0
+        self.roughness = 0.015      # Default for conncrete
+        self.diameter = 0.0
+        self.wetted_perimeter = 0.0
+        self.wetted_area = 0.0
+        self.hydraulic_radius = 0.0
+        self.velocity = 0.0
+        self.water_depth = 0.0
+
+    # Getters
+    def get_discharge(self):
+        """
+        Get the computed discharge
+        :return:
+        """
+        return self.discharge
+
+    def get_velocity(self):
+        """
+        Get the computed average velocity
+        :return:
+        """
+        return self.velocity
+
+    def get_wetted_area(self):
+        """
+        Get the computed wetted area.
+        :return:
+        """
+        return self.wetted_area
+
+    def get_wetted_perimeter(self):
+        """
+        Get the computed wetted perimeter.
+        :return:
+        """
+        return self.wetted_perimeter
+
+    def get_hydraulic_radius(self):
+        """
+        Get the computed hydraulic radius.
+        :return:
+        """
+        return self.hydraulic_radius
+
+    # Setters
+    def set_slope(self, slope):
+        """
+        Set the channel slope
+        :param slope:
+        :return:
+        """
+        self.slope = slope
+
+    def set_diameter(self, diameter):
+        """
+        Set the pipe diameter in meters
+        :param diameter:
+        :return:
+        """
+        self.diameter = diameter
+
+    def set_roughness(self, n):
+        """
+        Set the manning's roughness coefficient
+        :param n:
+        :return:
+        """
+        self.roughness = n
+
+    def set_water_depth(self, h):
+        """
+        Set the water depth to get the discharge
+        :param h:
+        :return:
+        """
+        self.water_depth = h
+
+    # Functions
+    def calculate_discharge(self):
+        """
+        Calculate the hydraulic elements of the pipe
+        :return:
+        """
+        h = self.water_depth
+        dia = self.diameter
+        slope = self.slope
+        n = self.roughness
+
+        if h > dia:
+            print('Error in input. Water depth is greater than pipe diameter!')
+            return 0, 0, 0, 0, 0
+
+        if h < (dia/2):
+            almost_full = False  # Indicates that the water surface is below the center
+        else:
+            almost_full = True
+
+        ''' Calculate tetha '''
+        if almost_full:
+            tetha = 2 * math.acos((2 * h - dia)/dia) * 180 / math.pi
+        else:
+            tetha = 2 * math.acos((dia - 2 * h)/dia) * 180 / math.pi
+
+        ''' Calculate area of triangle '''
+        a_tri = (dia**2) * math.sin(tetha * math.pi / 180) / 8
+
+        ''' Calculate area of sector '''
+        if almost_full:
+            a_sec = math.pi * dia**2 * (360 - tetha) / 1440
+            self.wetted_area = a_sec + a_tri
+            self.wetted_perimeter = math.pi * dia * (360 - tetha) / 360
+        else:
+            a_sec = tetha * math.pi * dia**2 / 1440
+            self.wetted_area = a_sec - a_tri
+            self.wetted_perimeter = math.pi * dia * tetha / 360
+
+        self.hydraulic_radius = self.wetted_area / self.wetted_perimeter
+
+        r = self.hydraulic_radius
+        s = slope
+
+        v = (1 / n) * r**(2/3) * math.sqrt(s)       # Velocity
+        q = v * self.wetted_area                    # Discharge
+
+        self.velocity = v
+        self.discharge = q
+
+        # Return the hydraulic elements in a tuple
+        return self.discharge, self.velocity, self.wetted_area, self.wetted_perimeter, self.hydraulic_radius

@@ -1,12 +1,12 @@
 # Open Channel Hydraulics
-Python class to use in solving hydraulic elements of an open channel. This uses the Manning's equation in solving the elements.
+Python modules to use in solving hydraulic elements of an open channel. This uses the Manning's equation in solving the hydraulic elements.
 
-There are two types of open channel in this module, _rectangular_ and _trapezoidal_.
+There are three types of open channel classes in this module, _rectangular_, _trapezoidal_ and _circular_.
 
 Here are the checklist for this module:<br/>
 - [x] Rectangular
 - [x] Trapezoidal
-- [ ] Circular
+- [x] Circular
 - [ ] Irregular
 
 All those unchecked are yet to be written.

@@ -3,7 +3,7 @@ Python modules to use in solving hydraulic elements of an open channel. This use
 
 This project aims to create bits of modules for hydraulics engineering and later to be combined as one package for easier distribution. It aims to create an open source software for this subject to help both engineering students and instructors if they ever find this useful to them.
 
-There are three types of open channel classes in this module <u>openchannel</u>, _rectangular_, _trapezoidal_ and _circular_.
+There are four types of open channel classes in this module <u>openchannel</u>, _rectangular_, _trapezoidal_, _circular_ and for irregular sections as well.
 
 Here are the checklist for this module:<br/>
 - [x] Rectangular

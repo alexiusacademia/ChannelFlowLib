@@ -5,5 +5,4 @@ channelflowlib/openchannellib.py
 channelflowlib.egg-info/PKG-INFO
 channelflowlib.egg-info/SOURCES.txt
 channelflowlib.egg-info/dependency_links.txt
-channelflowlib.egg-info/requires.txt
 channelflowlib.egg-info/top_level.txt

@@ -30,12 +30,43 @@ Here are the checklist for this module:<br/>
 ### 10/29/2017
 - Module irrig_channel is deleted. This is replaced by a more standardized code examples.
 
+## Installation
+```
+pip install channelflowlib
+```
+
 ## Usage:
-### Irrigular Section Open Channel
+
+### Rectangular Channel
 ```python
-from openchannellib import  IrregularSection
+from channelflowlib.openchannellib import Rectangular
+
+# Initialize Rectangular Channel instance
+rect = Rectangular(unknown='discharge')
+
+# Set the inputs
+rect.set_channel_slope(0.001)
+rect.set_channel_base(1.0)
+rect.set_roughness(0.015)
+rect.set_water_depth(0.989)
+
+# Analyze
+rect.analyze()
+
+# Show the outputs
+print ('Discharge : ', round(rect.discharge, 2))
+print ('Wet Area  : ', round(rect.wetted_area, 3))
+print ('Wet Perimeter: ', round(rect.wetted_perimeter, 3))
+print ('Hydraulic Radius: ', round(rect.hydraulic_radius, 4))
+
+```
+
+### Irregular Section Open Channel
+```python
+from channelflowlib.openchannellib import  IrregularSection
 import matplotlib.pyplot as plt
 
+# Create tuple of points (tuple)
 pts = (
     (0, 1.13),
     (1.287, 1.2),
@@ -46,16 +77,21 @@ pts = (
     (14.188, 1.2)
 )
 
+# Initialize the channel with the points
 channel = IrregularSection(pts)
+
+# Set the required inputs
 channel.set_average_rougness(0.03)
 channel.set_bed_slope(0.002)
-channel.set_water_elevation(1)
+channel.set_water_elevation(1.0)
 channel.analyze()
 
+# Print some outputs
 print('Discharge : ', round(channel.discharge, 2))
 print('Wet Area  : ', round(channel.wetted_area, 2))
 
 # Plot a water rating curve
+# This requires matplotlib
 max_elev = 1.0
 min_elev = -1.0
 interval = 0.1

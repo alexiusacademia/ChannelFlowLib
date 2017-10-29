@@ -621,7 +621,7 @@ class Circular:
 
 # This class if for irrregular shape channels like rivers and creeks
 class IrregularSection:
-    def __init__(self, *points):
+    def __init__(self, points):
         """
         Constructor and initializations
         :param points:
@@ -637,6 +637,8 @@ class IrregularSection:
         self.hydraulic_radius = 0.0     # Hydraulic radius
         self.velocity = 0.0             # Average velocity
         self.discharge = 0.0            # Discharge
+        self.max_water_elevation = 0.0
+        self.min_water_elevation = 0.0
 
     # ---------
     # Setters
@@ -684,9 +686,17 @@ class IrregularSection:
         else:
             max_ws = self.points[0][1]
 
+        self.max_water_elevation = max_ws
+
         if self.water_elevation > max_ws:
             print('Water will overflow the bank!')
-            raise Exception
+            # raise Exception
+            return
+
+        # Get the lowest possible water elevation
+        if self.water_elevation < self.get_lowest_elev(self.points):
+            print('Water surface is below the lowest point of the channel.')
+            return
 
         # Number of intersections
         left = 0

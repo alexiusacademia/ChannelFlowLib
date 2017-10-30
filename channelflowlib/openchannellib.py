@@ -53,6 +53,8 @@ class Rectangular:
     def __init__(self, **unknown):
         if 'unknown' in unknown.keys():
             self.unknown['unknown'] = unknown['unknown']        # Get the unknown
+        if 'unit' in unknown.keys():
+            self.unknown['unit'] = unknown['unit']
 
     # Check if unit is set to metric
     def ismetric(self):

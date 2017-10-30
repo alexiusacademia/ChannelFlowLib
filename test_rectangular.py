@@ -1,7 +1,7 @@
 from channelflowlib.openchannellib import Rectangular
 
 # Initialize Rectangular Channel instance
-rect = Rectangular(unknown='discharge')
+rect = Rectangular(unknown='discharge', unit='english')
 
 # Set the inputs
 rect.set_channel_slope(0.001)

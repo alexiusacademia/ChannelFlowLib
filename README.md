@@ -120,3 +120,7 @@ plt.show()
 
 ## Contribute:
 Anyone who want to contribute, just contact me at alexius.academia@gmail.com
+
+
+## Documentation
+https://alexiusacademia.com/documentation-channelflowlib/

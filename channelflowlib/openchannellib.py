@@ -34,6 +34,9 @@ sqm_to_sq_ft = 3.28 ** 2                    # Convert square meter to square fee
 
 
 class Rectangular:
+    """
+    Rectangular Channel Class.
+    """
     #####################################
     #   Variables and default values    #
     #####################################
@@ -51,6 +54,10 @@ class Rectangular:
     discharge = 0.0                     # Discharge in cms
 
     def __init__(self, **unknown):
+        """
+        Initialize the rectangular class for rectangular open channel.
+        :param unknown:
+        """
         if 'unknown' in unknown.keys():
             self.unknown['unknown'] = unknown['unknown']        # Get the unknown
         if 'unit' in unknown.keys():
@@ -58,6 +65,10 @@ class Rectangular:
 
     # Check if unit is set to metric
     def ismetric(self):
+        """
+        Check if the unit set is metric.
+        :return: bool
+        """
         if self.unknown['unit'] == metric:
             return True
         else:

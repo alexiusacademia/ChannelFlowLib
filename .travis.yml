@@ -2,4 +2,4 @@ language: python
 python:
 - '3.5'
 
-script: python test_rectangular.py
+script: python test_trapezoidal.py

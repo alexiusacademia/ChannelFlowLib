@@ -12,6 +12,9 @@ Here are the checklist for this module:<br/>
 - [x] Trapezoidal
 - [x] Circular
 - [x] Irregular Section
+- [ ] Sharp-Cested Weir
+- [ ] Broad-Crested Weir
+- [ ] Ogee Weir
 
 ## Notes:
 

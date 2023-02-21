@@ -2,11 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='channelflowlib',
-    version='0.6.3',
+    version='0.6.4',
     description='Python modules for channel flow and hydraulics engineering.',
     url='https://github.com/alexiusacademia/ChannelFlowLib',
     author='Alexius Academia',
-    author_email='alexius.academia@gmail.com',
+    author_email='alexius.sayco.academia@gmail.com',
     license='GNU GPL 3',
     classifiers=[
         'Development Status :: 4 - Beta',

@@ -1,13 +1,12 @@
 Metadata-Version: 2.1
 Name: channelflowlib
-Version: 0.6.3
-Summary: Python modules for channel flow and hydraulics engineering.
+Version: 0.7.0
+Summary: Python library for open channel flow and hydraulics engineering calculations.
 Home-page: https://github.com/alexiusacademia/ChannelFlowLib
 Author: Alexius Academia
-Author-email: alexius.academia@gmail.com
+Author-email: alexius.sayco.academia@gmail.com
 License: GNU GPL 3
 Keywords: hydraulics open-channel fluid-flow
-Platform: UNKNOWN
 Classifier: Development Status :: 4 - Beta
 Classifier: Intended Audience :: Science/Research
 Classifier: Natural Language :: English
@@ -19,5 +18,4 @@ Classifier: Programming Language :: Python :: 3.5
 Classifier: Programming Language :: Python :: 3.6
 License-File: LICENSE
 
-UNKNOWN
-
+Python library for open channel flow and hydraulics engineering calculations.

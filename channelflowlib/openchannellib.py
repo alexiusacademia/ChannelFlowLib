@@ -23,7 +23,10 @@
 # --------------------------------------------------------------------------#
 import math
 
-from .critical_flow import solve_critical_flow_rectangular
+from .critical_flow import (
+    solve_critical_flow_rectangular,
+    solve_critical_flow_trapezoidal
+)
 
 """ Open Channel Module """
 metric = 'metric'                           # String metric for unit conversion
@@ -265,6 +268,7 @@ class Rectangular:
                                                         self.discharge,
                                                         self.roughness)
 
+
 class Trapezoidal:
     #########################
     #   Declare variables   #
@@ -283,6 +287,7 @@ class Trapezoidal:
     wetted_perimeter = 0.0              # Wetted perimeter in meter
     hydraulic_radius = 0.0              # Hydraulic radius in meter
     critical_depth = 0.0                # Critical depth in meter
+    critical_flow = None
 
     # Constructor, tells the unknown
     def __init__(self, **unknown):
@@ -502,6 +507,8 @@ class Trapezoidal:
                 self.wetted_perimeter = p
                 self.hydraulic_radius = r
                 self.velocity = v
+
+        self.critical_flow = solve_critical_flow_trapezoidal(self)
 
 
 class Circular:

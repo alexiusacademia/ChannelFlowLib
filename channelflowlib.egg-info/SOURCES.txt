@@ -2,8 +2,12 @@ LICENSE
 README.rst
 setup.py
 channelflowlib/__init__.py
+channelflowlib/constants.py
+channelflowlib/critical_flow.py
+channelflowlib/gvf.py
 channelflowlib/openchannellib.py
 channelflowlib.egg-info/PKG-INFO
 channelflowlib.egg-info/SOURCES.txt
 channelflowlib.egg-info/dependency_links.txt
 channelflowlib.egg-info/top_level.txt
+tests/test_irregular_section.py

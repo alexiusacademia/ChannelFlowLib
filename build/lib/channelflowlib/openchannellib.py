@@ -23,6 +23,8 @@
 # --------------------------------------------------------------------------#
 import math
 
+from .critical_flow import solve_critical_flow_rectangular
+
 """ Open Channel Module """
 metric = 'metric'                           # String metric for unit conversion
 cfs_to_cms = 1/35.28755                     # Convert cubic feet per second to cubic meter per second
@@ -34,6 +36,9 @@ sqm_to_sq_ft = 3.28 ** 2                    # Convert square meter to square fee
 
 
 class Rectangular:
+    """
+    Rectangular Channel Class.
+    """
     #####################################
     #   Variables and default values    #
     #####################################
@@ -49,8 +54,13 @@ class Rectangular:
     channel_slope = 0.0                 # Bed slope
     roughness = 0.0                     # Manning's roughness coefficient
     discharge = 0.0                     # Discharge in cms
+    critical_flow = None
 
     def __init__(self, **unknown):
+        """
+        Initialize the rectangular class for rectangular open channel.
+        :param unknown:
+        """
         if 'unknown' in unknown.keys():
             self.unknown['unknown'] = unknown['unknown']        # Get the unknown
         if 'unit' in unknown.keys():
@@ -58,6 +68,10 @@ class Rectangular:
 
     # Check if unit is set to metric
     def ismetric(self):
+        """
+        Check if the unit set is metric.
+        :return: bool
+        """
         if self.unknown['unit'] == metric:
             return True
         else:
@@ -244,6 +258,12 @@ class Rectangular:
             self.wetted_area        = 0.0
             self.wetted_perimeter   = 0.0
             self.hydraulic_radius   = 0.0
+
+        self.critical_flow = solve_critical_flow_rectangular(self.wetted_area,
+                                                        self.channel_base,
+                                                        self.velocity,
+                                                        self.discharge,
+                                                        self.roughness)
 
 class Trapezoidal:
     #########################

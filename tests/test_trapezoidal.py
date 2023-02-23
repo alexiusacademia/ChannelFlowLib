@@ -1,4 +1,4 @@
-from channelflowlib.openchannellib import Trapezoidal
+from ..channelflowlib.openchannellib import Trapezoidal
 
 # Initialize Trapezoidal Channel instance
 trap = Trapezoidal(unknown='discharge')
@@ -18,3 +18,4 @@ print ('Discharge : ', round(trap.discharge, 2))
 print ('Wet Area  : ', round(trap.wetted_area, 3))
 print ('Wet Perimeter: ', round(trap.wetted_perimeter, 3))
 print ('Hydraulic Radius: ', round(trap.hydraulic_radius, 4))
+print('Critical Flow', trap.critical_flow)

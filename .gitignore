@@ -4,3 +4,5 @@
 /build
 
 venv/
+
+*.pyc

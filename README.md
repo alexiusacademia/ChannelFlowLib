@@ -32,6 +32,8 @@ Here are the checklist for this module:<br/>
 - Uploaded a module irrig_channel. This module will calculate the discharge-elevation rating curve. Note that this module is not yet incorporated as a class in <b>Open Channel</b> module. This is a separate file for separate use.
 ### 10/29/2017
 - Module irrig_channel is deleted. This is replaced by a more standardized code examples.
+### 02/23/23
+- Added critical flow calculation for rectangular and trapezoidal channels
 
 ## Installation
 ```

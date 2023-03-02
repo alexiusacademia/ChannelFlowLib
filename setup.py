@@ -10,7 +10,7 @@ setup(
     author_email='alexius.sayco.academia@gmail.com',
     license='GNU GPL 3',
     classifiers=[
-        'Development Status :: 5 - Beta',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Science/Research',
         'Natural Language :: English',
         'Operating System :: OS Independent',
@@ -19,7 +19,6 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.10',
     ],
     keywords='hydraulics open-channel fluid-flow',
     packages=find_packages(exclude=['tests*']),

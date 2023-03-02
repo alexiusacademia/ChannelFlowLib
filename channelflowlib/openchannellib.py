@@ -508,7 +508,13 @@ class Trapezoidal:
                 self.hydraulic_radius = r
                 self.velocity = v
 
-        self.critical_flow = solve_critical_flow_trapezoidal(self)
+        self.critical_flow = solve_critical_flow_trapezoidal(discharge=self.discharge,
+                                                             water_depth=self.water_depth,
+                                                             channel_base=self.channel_base,
+                                                             side_slope=self.side_slope,
+                                                             roughness=self.roughness,
+                                                             flow_area=self.wetted_area,
+                                                             velocity=self.velocity)
 
 
 class Circular:

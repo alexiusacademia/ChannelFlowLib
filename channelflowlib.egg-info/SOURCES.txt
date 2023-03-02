@@ -11,3 +11,4 @@ channelflowlib.egg-info/SOURCES.txt
 channelflowlib.egg-info/dependency_links.txt
 channelflowlib.egg-info/top_level.txt
 tests/test_irregular_section.py
+tests/test_trapezoidal.py

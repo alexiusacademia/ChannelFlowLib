@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='channelflowlib',
-    version='0.8.0',
+    version='0.8.1',
     description='Python library for open channel flow and hydraulics engineering calculations.',
     long_description='Python library for open channel flow and hydraulics engineering calculations.',
     url='https://github.com/alexiusacademia/ChannelFlowLib',
@@ -10,7 +10,7 @@ setup(
     author_email='alexius.sayco.academia@gmail.com',
     license='GNU GPL 3',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Beta',
         'Intended Audience :: Science/Research',
         'Natural Language :: English',
         'Operating System :: OS Independent',
@@ -19,6 +19,7 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.10',
     ],
     keywords='hydraulics open-channel fluid-flow',
     packages=find_packages(exclude=['tests*']),

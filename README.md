@@ -9,8 +9,11 @@ There are four types of open channel classes in this module <u>openchannel</u>, 
 
 Here are the checklist for this module:<br/>
 - [x] Rectangular
+  - [x] Critical Flow
 - [x] Trapezoidal
+  - [ ] Critical Flow
 - [x] Circular
+  - [ ] Critical Flow
 - [x] Irregular Section
 - [ ] Sharp-Cested Weir
 - [ ] Broad-Crested Weir

@@ -25,7 +25,8 @@ import math
 
 from .critical_flow import (
     solve_critical_flow_rectangular,
-    solve_critical_flow_trapezoidal
+    solve_critical_flow_trapezoidal,
+    solve_critical_flow_circular
 )
 
 """ Open Channel Module """
@@ -532,6 +533,7 @@ class Circular:
         self.hydraulic_radius = 0.0
         self.velocity = 0.0
         self.water_depth = 0.0
+        self.critical_flow = None
 
     # Getters
     def get_discharge(self):
@@ -651,6 +653,13 @@ class Circular:
 
         self.velocity = v
         self.discharge = q
+
+        self.critical_flow = solve_critical_flow_circular(self.discharge,
+                                                          self.diameter,
+                                                          self.water_depth,
+                                                          self.roughness,
+                                                          self.wetted_area,
+                                                          self.velocity)
 
         # Return the hydraulic elements in a tuple
         return self.discharge, self.velocity, self.wetted_area, self.wetted_perimeter, self.hydraulic_radius

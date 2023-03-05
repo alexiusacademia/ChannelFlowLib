@@ -200,7 +200,8 @@ def solve_critical_flow_circular(discharge: float,
     # Solve for froude number
     top_width = solve_top_width_circular(y=water_depth,
                                          triangular_area=triangleArea,
-                                         almost_full=(water_depth > (diameter / 2)))
+                                         almost_full=(water_depth > (diameter / 2)),
+                                         diameter=diameter)
     hydraulic_depth = wetted_area / top_width
 
     froude_number = velocity / math.sqrt(GRAVITY_G * hydraulic_depth)

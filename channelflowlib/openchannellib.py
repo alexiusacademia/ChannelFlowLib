@@ -604,6 +604,11 @@ class Circular:
         """
         self.water_depth = h
 
+    def analyze(self):
+        # If unknown is discharge
+        if self.unknown['unknown'] == 'discharge':
+            self.calculate_discharge()
+
     # Functions
     def calculate_discharge(self):
         """

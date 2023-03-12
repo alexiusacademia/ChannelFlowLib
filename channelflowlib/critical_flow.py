@@ -82,18 +82,29 @@ def solve_critical_flow_trapezoidal(discharge: float,
 
 
 def solve_top_width_circular(y: float,
-                             triangular_area: float,
-                             almost_full: bool,
                              diameter: float):
+    """
+    Calculates the top width of the water inside the pipe.
+
+    Args:
+        y: Water depth
+        diameter: Pipe diameter
+
+    Returns:
+
+    """
     top_width = 0.0
-    triangle_height = 0.0
+    r = diameter / 2
+    ht = 0  # Height of triangle
 
-    if almost_full:
-        triangle_height = y - diameter / 2.0
+    if y == r:
+        ht = 0.0
+    elif y > r:
+        ht = y - r
     else:
-        triangle_height = diameter / 2.0 - y
+        ht = r - y
 
-    top_width = 2.0 * diameter / triangle_height
+    top_width = 2 * math.sqrt(math.pow(r, 2) - math.pow(ht, 2))
 
     return top_width
 
@@ -146,8 +157,6 @@ def solve_critical_flow_circular(discharge: float,
         aTriC = pow(diameter, 2) * math.sin(thetaC * math.pi / 180) / 8
 
         T = solve_top_width_circular(y=critical_depth,
-                                     triangular_area=aTriC,
-                                     almost_full=(critical_depth > (diameter / 2.0)),
                                      diameter=diameter)
 
         # Calculate area of sector
@@ -199,8 +208,6 @@ def solve_critical_flow_circular(discharge: float,
 
     # Solve for froude number
     top_width = solve_top_width_circular(y=water_depth,
-                                         triangular_area=triangleArea,
-                                         almost_full=(water_depth > (diameter / 2)),
                                          diameter=diameter)
     hydraulic_depth = wetted_area / top_width
 

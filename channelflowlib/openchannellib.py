@@ -620,8 +620,8 @@ class Circular:
         slope = self.slope
         n = self.roughness
 
-        if h > dia:
-            print('Error in input. Water depth is greater than pipe diameter!')
+        if h >= dia:
+            print('Error in input. Water depth is greater than or equal to pipe diameter!')
             return 0, 0, 0, 0, 0
 
         if h < (dia/2):

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='channelflowlib',
-    version='0.9.1',
+    version='0.9.2',
     description='Python library for open channel flow and hydraulics engineering calculations.',
     long_description='Python library for open channel flow and hydraulics engineering calculations.',
     url='https://github.com/alexiusacademia/ChannelFlowLib',

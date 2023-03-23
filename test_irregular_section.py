@@ -18,31 +18,3 @@ channel.analyze()
 
 print('Discharge : ', round(channel.discharge, 2))
 print('Wet Area  : ', round(channel.wetted_area, 2))
-
-# Plot a water rating curve
-max_elev = 1.0
-min_elev = -1.0
-interval = 0.1
-intervals = ((max_elev - min_elev) / interval)
-
-elevs = []
-discharges = []
-
-for i in range(int(intervals) + 1):
-    elev = min_elev + (i * interval)
-
-    channel.set_water_elevation(elev)
-    channel.analyze()
-
-    discharge = channel.discharge
-
-    elevs.append(elev)
-    discharges.append(discharge)
-
-try:
-    import matplotlib.pyplot as plt
-
-    plt.plot(discharges, elevs)
-    plt.show()
-except Exception as e:
-    print(e)

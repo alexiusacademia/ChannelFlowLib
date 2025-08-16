@@ -23,6 +23,7 @@
 # --------------------------------------------------------------------------#
 import math
 
+from .constants import GRAVITY_G
 from .critical_flow import (
     solve_critical_flow_rectangular,
     solve_critical_flow_trapezoidal,
@@ -604,6 +605,11 @@ class Circular:
         """
         self.water_depth = h
 
+    def analyze(self):
+        # If unknown is discharge
+        if self.unknown['unknown'] == 'discharge':
+            self.calculate_discharge()
+
     # Functions
     def calculate_discharge(self):
         """
@@ -615,8 +621,8 @@ class Circular:
         slope = self.slope
         n = self.roughness
 
-        if h > dia:
-            print('Error in input. Water depth is greater than pipe diameter!')
+        if h >= dia:
+            print('Error in input. Water depth is greater than or equal to pipe diameter!')
             return 0, 0, 0, 0, 0
 
         if h < (dia/2):
@@ -685,6 +691,7 @@ class IrregularSection:
         self.discharge = 0.0            # Discharge
         self.max_water_elevation = 0.0
         self.min_water_elevation = 0.0
+        self.froude_number = 0.0
 
     # ---------
     # Setters
@@ -779,12 +786,20 @@ class IrregularSection:
                 if right == 0:
                     new_points.append(self.points[index])
 
+        left_top_bank_point = new_points[0]
+        right_top_bank_point = new_points[len(new_points) - 1]
+
         # Hydraulic elements
         self.wetted_area = self.polygon_area(new_points)
         self.wetted_perimeter = self.get_perimeter(new_points)
         self.hydraulic_radius = self.wetted_area / self.wetted_perimeter
         self.velocity = (1 / self.roughness) * self.hydraulic_radius**(2/3) * self.bed_slope**0.5
         self.discharge = self.velocity * self.wetted_area
+
+        self.top_width = right_top_bank_point[0] - left_top_bank_point[0]
+        hydraulic_depth = self.polygon_area(new_points) / self.top_width
+        self.froude_number = self.velocity / math.sqrt(GRAVITY_G * hydraulic_depth)
+        self.discharge_intensity = self.discharge / self.top_width
 
     def polygon_area(self, vertices):
         """
